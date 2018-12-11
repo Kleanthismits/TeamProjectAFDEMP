@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//revised at 15:24 11/12/2018
 
 @RestController
 @RequestMapping("/api")
@@ -46,7 +47,7 @@ public class MessageController {
 
         message.setSender_id(messageDetails.getSender_id());
         message.setReceiver_id(messageDetails.getReceiver_id());
-        message.setRead_status(messageDetails.isRead_status());
+        message.setRead_status(messageDetails.getRead_status());
         message.setSender_id(messageDetails.getSender_id());
         message.setReceiver_id(messageDetails.getReceiver_id());
         message.setSubject(messageDetails.getSubject());
