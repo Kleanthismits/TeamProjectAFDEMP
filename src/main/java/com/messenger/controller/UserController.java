@@ -9,6 +9,7 @@ import com.messenger.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,9 +44,13 @@ public class UserController {
 //      return userRepository.save(user);
 //  }
   @PostMapping("/createUser")
-  public String createUser(User user) {
-  	userRepository.saveAndFlush(user);
-      return "userDetails";
+  public ModelAndView createUser(User user) {
+  	userRepository.save(user);
+  	ModelAndView mv = new ModelAndView();
+  	mv.addObject("obj",user);
+  	mv.setViewName("userDetails");
+  	
+      return mv;
   }
 //  //Method that Shows a User with a certain Id
 //  @GetMapping("/users/{id}")

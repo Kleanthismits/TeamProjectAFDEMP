@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<link rel="stylesheet" href="webapp/styles.css">
+<link rel="stylesheet" href="styles.css">
 <!-- <style>           
 .blue-button{
 	background: #25A6E1;
@@ -42,6 +42,11 @@ Password: <input type="text" name="password"><br/>
 Role: <input type="text" name="role"><br/>
 <input type="submit"/>
 </form><br/>
+
+
+
+
+
 <h5>Select a user id to display</h5>
 <form action="getUser">
 Id: <input type="text" name="userId"><br/>
@@ -75,7 +80,8 @@ Id: <input type="text" name="userId"><br/>
 				class = "bluebutton" /></td>
 		</tr>
 	</table> 
-</form:form>
+</form:form> --%>
+<%-- 
 <c:if test=""></c:if>
 <br/>
 <h3>Notes List</h3>
@@ -98,7 +104,7 @@ Id: <input type="text" name="userId"><br/>
 		</tr>
 	</c:forEach>
 	</table>
-</c:if> --%>
+</c:if>--%>
 
 </body>
 </html>
