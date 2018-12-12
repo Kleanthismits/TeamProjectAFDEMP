@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="demo.css">
 <!-- <style>           
 .blue-button{
 	background: #25A6E1;
@@ -34,8 +34,8 @@ th {
 </style> -->
 </head>
 <body>
-<div style=text-align:center>
-<h5>Create a new user</h5>
+<div class = "container" style=text-align:center>
+<h5 class ="codrops-top">Create a new user</h5>
 <form action="createUser" method = "POST">
 UserName: <input type="text" name="username"><br/>
 Password: <input type="text" name="password"><br/>
@@ -47,11 +47,17 @@ Role: <input type="text" name="role"><br/>
 
 
 
-<h5>Select a user id to display</h5>
+<h5 class = "codrops-top a">Select a user id to display</h5>
 <form action="getUser">
-Id: <input type="text" name="userId"><br/>
+Id: <input type="text" name="userId">
+${userNotFound}
+<br/>
+
 <input type="submit"/>
 </form><br/>
+
+
+
 <h5>See users by sorted username</h5>
 <form action="/findByNameSorted">
 <input type="submit"/>
