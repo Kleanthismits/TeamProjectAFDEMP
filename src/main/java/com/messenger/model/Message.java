@@ -21,10 +21,13 @@ public class Message {
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(nullable = false)
-    private Long sender_id;
+//    @Column(nullable = false)
+//    private Long sender_id;
+  
     
-    @Column(nullable = false)
+
+
+	@Column(nullable = true) //false
     private Long receiver_id;
     
     @Column(nullable = false, updatable = false)
@@ -51,6 +54,36 @@ public class Message {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(250)")
     private String text_content;
+    
+    
+
+	public Message() {
+		super();
+	}
+
+
+	public Message(Long id /*Long sender_id*/, Long receiver_id, Date sent_at, Date updated_at, boolean read_status,
+			boolean sender_view, boolean receiver_view, String subject, String text_content) {
+		super();
+		this.id = id;
+		//this.sender_id = sender_id;
+		this.receiver_id = receiver_id;
+		this.sent_at = sent_at;
+		this.updated_at = updated_at;
+		this.read_status = read_status;
+		this.sender_view = sender_view;
+		this.receiver_view = receiver_view;
+		this.subject = subject;
+		this.text_content = text_content;
+	}
+
+	
+	public Message(String subject, String text_content) {
+		super();
+		this.subject = subject;
+		this.text_content = text_content;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -60,13 +93,13 @@ public class Message {
 		this.id = id;
 	}
 
-	public Long getSender_id() {
-		return sender_id;
-	}
-
-	public void setSender_id(Long sender_id) {
-		this.sender_id = sender_id;
-	}
+//	public Long getSender_id() {
+//		return sender_id;
+//	}
+//
+//	public void setSender_id(Long sender_id) {
+//		this.sender_id = sender_id;
+//	}
 
 	public Long getReceiver_id() {
 		return receiver_id;
@@ -134,8 +167,36 @@ public class Message {
 
     
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (receiver_view ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Message other = (Message) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (receiver_view != other.receiver_view)
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Message [ id=" + id + ", sender_id=" + sender_id + ", receiver_id=" + receiver_id + ", sent_at=" + sent_at
+		return "Message [ id=" + id + ",receiver_id=" + receiver_id + ", sent_at=" + sent_at
 		     + ", updated_at=" + updated_at + ", read_status=" + read_status +", sender_view=" + sender_view
 		     + ", receiver_view=" + receiver_view + ", subject=" + subject + ", text_content=" + text_content + " ]";
 	}

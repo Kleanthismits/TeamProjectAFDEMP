@@ -60,5 +60,14 @@
 		</form>
 		<br />
 	</div>
+	<div class="container" style="text-align: center">
+		<h5 class="codrops-top">Delete a user</h5>
+
+		<form action="deleteUser" method="Post">
+			Id: <input type="text" name="userId"><br /> 
+			 <input type="submit" />
+		</form>
+		<br />
+	</div>
 </body>
 </html>

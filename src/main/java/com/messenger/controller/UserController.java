@@ -24,12 +24,15 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 
-	@RequestMapping("/")
+	@RequestMapping("/loggedIn")
 	public ModelAndView home(User user) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("obj", user);
+		User user2 = userRepository.findByUsername(user.getUsername());
+		String welcomeUser = user.getUsername();
+		mv.addObject("welcomeUser",welcomeUser);
+		mv.addObject("user", user);
 		mv.setViewName("userDetails");
-		System.out.println("HI theeeeeeeeeeeeeeeeeereeeeeeeeeeeeeeee");
+		System.out.println(user2.toString());
 		return mv;
 	}
 
@@ -61,15 +64,20 @@ public class UserController {
 //  }
 	@GetMapping("/getUser")
 	public ModelAndView getNoteById(@RequestParam Long userId) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("userDetails");
 		String userNotFound = "User with id: " + userId + " not found!";
 		Optional<User> user = userRepository.findById(userId);
 		if(!(user.isPresent())) {
 			mv.addObject("userNotFound", userNotFound);
+			mv.addObject("user", new User());
+			return mv;
+		}else {
+			mv.addObject("user",user);
+			return mv;
 		}
-		mv.setViewName("userDetails");
-		mv.addObject(user);
-		return mv;
+		
+		
+		
 
 	}
 
@@ -84,7 +92,7 @@ public class UserController {
 
 	// Method that Updates the attributes of a User with a certain Id
 	@PostMapping("/updateUser")
-	public ModelAndView updateNote(@RequestParam Long userId,User userDetails) {
+	public ModelAndView updateUser(@RequestParam Long userId,User userDetails) {
 
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
@@ -115,13 +123,27 @@ public class UserController {
 	}
 
 	// Method that Deletes a User with a certain Id
-	@DeleteMapping("/users/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId) {
+//	@DeleteMapping("/users/{id}")
+//	public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId) {
+//		User user = userRepository.findById(userId)
+//				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+//
+//		userRepository.delete(user);
+//
+//		return ResponseEntity.ok().build();
+//	}
+	@PostMapping("/deleteUser")
+	public ModelAndView deleteUser(@RequestParam Long userId, User userDetails) {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
 		userRepository.delete(user);
+		List<User> userList = userRepository.findByNameSorted();
+		ModelAndView mv= new ModelAndView();
+		mv.addObject("obj",userDetails);
+		mv.addObject(userList);
+		mv.setViewName("showUser");
 
-		return ResponseEntity.ok().build();
+		return mv;
 	}
 }

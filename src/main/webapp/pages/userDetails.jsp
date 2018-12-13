@@ -34,6 +34,7 @@ th {
 </style> -->
 </head>
 <body>
+<p>Welcome ${welcomeUser}</p>
 <div class = "container" style=text-align:center>
 <h5 class ="codrops-top">Create a new user</h5>
 <form action="createUser" method = "POST">
@@ -50,9 +51,10 @@ Role: <input type="text" name="role"><br/>
 <h5 class = "codrops-top a">Select a user id to display</h5>
 <form action="getUser">
 Id: <input type="text" name="userId">
-${userNotFound}
 <br/>
+${userNotFound}${user}
 
+<br/>
 <input type="submit"/>
 </form><br/>
 
@@ -63,7 +65,7 @@ ${userNotFound}
 <input type="submit"/>
 </form>
 </div>
-<%-- <form:form method="post" modelAttribute="user" action="createUser">
+<form:form method="post" modelAttribute="user" action="createUser">
 <table>
 		<tr>
 			<th colspan="2">Add User</th>
@@ -86,7 +88,7 @@ ${userNotFound}
 				class = "bluebutton" /></td>
 		</tr>
 	</table> 
-</form:form> --%>
+</form:form>
 <%-- 
 <c:if test=""></c:if>
 <br/>

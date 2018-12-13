@@ -45,10 +45,10 @@ public class MessageController {
 
         Message message = messageRepository.findById(messageId).orElseThrow(() -> new ResourceNotFoundException("Message", "id", messageId));
 
-        message.setSender_id(messageDetails.getSender_id());
+       // message.setSender_id(messageDetails.getSender_id());
         message.setReceiver_id(messageDetails.getReceiver_id());
         message.setRead_status(messageDetails.getRead_status());
-        message.setSender_id(messageDetails.getSender_id());
+       // message.setSender_id(messageDetails.getSender_id());
         message.setReceiver_id(messageDetails.getReceiver_id());
         message.setSubject(messageDetails.getSubject());
         message.setText_content(messageDetails.getText_content());

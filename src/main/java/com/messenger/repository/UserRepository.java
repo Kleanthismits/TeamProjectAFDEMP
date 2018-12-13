@@ -17,6 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("from User order by username")
 	List<User>findByNameSorted();
+	
+	@Query("from User where username = ?1")
+	User findByUsername(String username);
 
 
 }
