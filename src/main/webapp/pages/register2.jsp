@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="login" method = "post">
+<form action="registerUser" method = "post">
   <div class="imgcontainer">
     <img src="pictures/wolf_paw.png" alt="login_icon" class="login_icon">
   </div>

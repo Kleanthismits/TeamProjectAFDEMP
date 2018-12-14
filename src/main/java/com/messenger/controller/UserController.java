@@ -21,16 +21,15 @@ public class UserController {
 	static User user2;
 
 	@PostMapping("/loggedIn")
-	public ModelAndView home(@ModelAttribute User user) {
+	public ModelAndView home(User user) {
 		ModelAndView mv = new ModelAndView();
 		String userNotFound = "Wrong username or password";
 		user2 = userRepository.findByUsername(user.getUsername());
-		System.out.println("user2id " + user2.getId());
 		if (user2 != null) {
 			if (user2.getPassword().equals(user.getPassword())) {
 				String welcomeUser = user.getUsername();
 				mv.addObject("welcomeUser", welcomeUser);
-				mv.addObject("user", user2);
+				mv.addObject("user", user);
 				mv.setViewName("userDetails");
 			}else {
 				mv.addObject("userNotFound", userNotFound);
@@ -62,7 +61,15 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("obj", user);
 		mv.setViewName("userDetails");
-
+		return mv;
+	}
+	
+	@PostMapping("/registerUser")
+	public ModelAndView registerUser(User user) {
+		userRepository.save(user);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new User());
+		mv.setViewName("welcome1");
 		return mv;
 	}
 
