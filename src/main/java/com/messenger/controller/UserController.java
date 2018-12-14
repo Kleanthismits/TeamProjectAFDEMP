@@ -18,16 +18,30 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
+	static User user2;
 
-	@RequestMapping("/loggedIn")
-	public ModelAndView home(User user) {
+	@PostMapping("/loggedIn")
+	public ModelAndView home(@ModelAttribute User user) {
 		ModelAndView mv = new ModelAndView();
-		User user2 = userRepository.findByUsername(user.getUsername());
-		String welcomeUser = user.getUsername();
-		mv.addObject("welcomeUser",welcomeUser);
-		mv.addObject("user", user);
-		mv.setViewName("userDetails");
-		System.out.println(user2.toString());
+		String userNotFound = "Wrong username or password";
+		user2 = userRepository.findByUsername(user.getUsername());
+		System.out.println("user2id " + user2.getId());
+		if (user2 != null) {
+			if (user2.getPassword().equals(user.getPassword())) {
+				String welcomeUser = user.getUsername();
+				mv.addObject("welcomeUser", welcomeUser);
+				mv.addObject("user", user2);
+				mv.setViewName("userDetails");
+			}else {
+				mv.addObject("userNotFound", userNotFound);
+				mv.setViewName("forward:/login");
+				mv.addObject("user", new User());
+			}
+		}else {
+			mv.addObject("userNotFound", userNotFound);
+			mv.setViewName("forward:/login");
+			mv.addObject("user", new User());
+		}
 		return mv;
 	}
 
@@ -62,18 +76,14 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("userDetails");
 		String userNotFound = "User with id: " + userId + " not found!";
 		Optional<User> user = userRepository.findById(userId);
-		if(!(user.isPresent())) {
+		if (!(user.isPresent())) {
 			mv.addObject("userNotFound", userNotFound);
 			mv.addObject("user", new User());
 			return mv;
-		}else {
-			mv.addObject("user",user);
+		} else {
+			mv.addObject("user", user);
 			return mv;
 		}
-		
-		
-		
-
 	}
 
 	@GetMapping("/findByNameSorted")
@@ -87,31 +97,31 @@ public class UserController {
 
 	// Method that Updates the attributes of a User with a certain Id
 	@PostMapping("/updateUser")
-	public ModelAndView updateUser(@RequestParam Long userId,User userDetails) {
+	public ModelAndView updateUser(@RequestParam Long userId, User userDetails) {
 
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-		if((userDetails.getUsername()==null)||(userDetails.getUsername().equals(""))) {
-		user.setUsername(user.getUsername());
-		}else {
+		if ((userDetails.getUsername() == null) || (userDetails.getUsername().equals(""))) {
+			user.setUsername(user.getUsername());
+		} else {
 			user.setUsername(userDetails.getUsername());
 		}
-		if((userDetails.getPassword()==null)||(userDetails.getPassword().equals(""))) {
+		if ((userDetails.getPassword() == null) || (userDetails.getPassword().equals(""))) {
 			user.setPassword(user.getPassword());
-			}else {
-				user.setPassword(userDetails.getPassword());
-			}
-		if((userDetails.getRole()==null)||(userDetails.getRole().equals(""))) {
+		} else {
+			user.setPassword(userDetails.getPassword());
+		}
+		if ((userDetails.getRole() == null) || (userDetails.getRole().equals(""))) {
 			user.setRole(user.getRole());
-			}else {
-				user.setRole(userDetails.getRole());
-			}
+		} else {
+			user.setRole(userDetails.getRole());
+		}
 //		user.setPassword(userDetails.getPassword());
 //		user.setRole(userDetails.getRole());
 		User updatedUser = userRepository.save(user);
 		List<User> userList = userRepository.findByNameSorted();
-		ModelAndView mv= new ModelAndView();
-		mv.addObject("obj",userDetails);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("obj", userDetails);
 		mv.addObject(userList);
 		mv.setViewName("showUser");
 		return mv;
@@ -134,8 +144,8 @@ public class UserController {
 
 		userRepository.delete(user);
 		List<User> userList = userRepository.findByNameSorted();
-		ModelAndView mv= new ModelAndView();
-		mv.addObject("obj",userDetails);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("obj", userDetails);
 		mv.addObject(userList);
 		mv.setViewName("showUser");
 

@@ -19,5 +19,17 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 //			value="select u.username,m.subject,m.sent_at,m.updated_at from users u \n" + 
 //					"inner join messages m on u.id = m.user_id",
 //			nativeQuery=true)
-	//List<Message>getAllMessages();
+	
+    @Query("from Message order by id")
+    List<Message> findAllUserMessages();
+    
+    @Query("from Message where sender_id=?1")
+    List<Message> findSentMessages(Long sender_id);
+    
+    @Query("from Message where receiver_id=?1")
+    List<Message> findReceivedMessages(Long receiver_id);
+    
+    
+	@Query("from Message")
+	List<Message>getAllMessages();
 }

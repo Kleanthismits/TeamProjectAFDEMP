@@ -26,5 +26,11 @@ public class LoginController {
     	mv.addObject("user",new User());
     	return mv;
     }
+    @PostMapping("/login")
+    public ModelAndView login(User user) {
+    	ModelAndView mv = new ModelAndView("welcome1");
+    	mv.addObject("user",new User());
+    	return mv;
+    }
     
 }

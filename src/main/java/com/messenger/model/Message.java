@@ -63,11 +63,11 @@ public class Message {
 	}
 
 
-	public Message(Long id /*Long sender_id*/, Long receiver_id, Date sent_at, Date updated_at, boolean read_status,
+	public Message(Long id, Long sender_id, Long receiver_id, Date sent_at, Date updated_at, boolean read_status,
 			boolean sender_view, boolean receiver_view, String subject, String text_content) {
 		super();
 		this.id = id;
-		//this.sender_id = sender_id;
+		this.sender_id = sender_id;
 		this.receiver_id = receiver_id;
 		this.sent_at = sent_at;
 		this.updated_at = updated_at;

@@ -9,29 +9,36 @@
 <head>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="demo.css">
+<link rel="stylesheet" href="showUser.css">
 <meta charset="UTF-8">
 <title>Show User</title>
 </head>
 <body>
 
+<br>
+	<div class="imgcontainer">
+    <img src="pictures/wolf_pack.jpg" alt="login_icon" class="login_icon">
+  </div>
+  <br>
 	<div style="text-align: center">
-		<table border="1" style="display: inline-block">
+	<fieldset id="userList">
+		<table id="userlistTable" border="1" style="display: inline-block">
 			<tr>
 				<td colspan="6" style="border: none; text-align: center">
-					<h2 class="codrops-demos a">User List</h2>
+					<h2 id="userListTitle" class="codrops-demos a">User List</h2>
 				</td>
 			</tr>
-			<tr>
-				<th>ID</th>
-				<th>username</th>
-				<th>password</th>
-				<th>role</th>
-				<th>Date Created</th>
-				<th>Date Updated</th>
+			<tr class="header">
+				<th id="userListColumns">ID</th>
+				<th id="userListColumns">Username</th>
+				<th id="userListColumns">Password</th>
+				<th id="userListColumns">Role</th>
+				<th id="userListColumns">Date Created</th>
+				<th id="userListColumns">Date Updated</th>
 			</tr>
 			<c:forEach items="${userList}" var="item">
-				<tr>
-					<td>${item.id}</td>
+				<tr id="userListItems" class="list">
+					<td id="userListId">${item.id}</td>
 					<td>${item.username}</td>
 					<td>${item.password}</td>
 					<td>${item.role}</td>
@@ -39,35 +46,45 @@
 					<td>${item.updated_at}</td>
 				</tr>
 			</c:forEach>
-
-
 		</table>
+		
+		<a id="returnButton" href="/" style="margin:auto;">Return</a>
+		
+		</fieldset>
 	</div>
-
-	<a href="/">Go Back</a>
+	<br>
+	
+	<!-- <div style="float:right">
+	<a id="returnButton" href="/" style="margin:auto;">Return</a>
+	</div> -->
+	
 	<br />
-	<div style="text-align: center">${user}</div>
+	<div style="text-align: center"><%-- ${user} --%>
+	<p>User Successfully Updated!</p>
+	</div>
 	<br />
 
-	<div class="container" style="text-align: center">
-		<h5 class="codrops-top">Update a user</h5>
+	<div class="container" style="text-align:center;">
+		<h5 class="codrops-top" style=" font-size: large; font-family: calibri;">Update user info</h5>
+		
+		<br>
 
 		<form action="updateUser" method="POST">
-			Id: <input type="text" name="userId"><br /> 
-			UserName: <input type="text" name="username"><br /> 
-			Password: <input type="text" name="password"><br /> 
-			Role: <input type="text" name="role"><br /> <input type="submit" />
+		<fieldset>
+		<!-- <legend>Update a user</legend> -->
+		<br>
+			<div>Id: <input style="float:right"type="text" name="userId"></div><br /> 
+			<div>UserName: <input style="float:right" type="text" name="username"></div><br /> 
+			<div>Password: <input style="float:right"type="text" name="password"></div><br /> 
+			<div>Role: <input style="float:right"type="text" name="role"></div><br />
+			
+			<br>
+			<input class="updatebutton" type="submit" value="Update" style="font-family: calibri;"/>
+			<br></br>
+			</fieldset>
 		</form>
 		<br />
-	</div>
-	<div class="container" style="text-align: center">
-		<h5 class="codrops-top">Delete a user</h5>
-
-		<form action="deleteUser" method="Post">
-			Id: <input type="text" name="userId"><br /> 
-			 <input type="submit" />
-		</form>
-		<br />
+		<br></br>
 	</div>
 </body>
 </html>

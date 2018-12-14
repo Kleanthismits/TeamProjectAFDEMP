@@ -19,7 +19,7 @@
   </div>
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
+    <label for="uname"><b>Username</b></label><p>${userNotFound}</p>
     <input type="text" placeholder="Enter Username" name="username" required>
 
     <label for="psw"><b>Password</b></label>
@@ -32,13 +32,15 @@
       <a href="register.jsp">Register</a>
     </label> -->
   </div>
-  
+  </form>
 
   <div class="container" style="background-color:#f1f1f1">
-    <a href="register2.jsp">Register</a>
+ <form action="register" method="get">
+    <input type="submit" value = "Register" class = "reg">
     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+    </form >
   </div>
-</form>
+
 
 </body>
 </html>

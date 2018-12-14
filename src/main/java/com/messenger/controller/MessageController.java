@@ -2,6 +2,7 @@ package com.messenger.controller;
 
 import com.messenger.exception.ResourceNotFoundException;
 import com.messenger.model.Message;
+import com.messenger.model.User;
 //import com.example.easynotes.model.Note;
 import com.messenger.repository.MessageRepository;
 //import com.example.easynotes.repository.NoteRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,20 +25,36 @@ public class MessageController {
     @Autowired
     MessageRepository messageRepository;
     
-//    @GetMapping("/getAllmessages")
-//    public ModelAndView findByNameSorted() {
-//       List<Message> messageList = messageRepository.getAllMessages();
-//        ModelAndView mv = new ModelAndView("showMessages");
-//        mv.addObject(messageList);
-//        return mv;
-// 
-//    }
-
-    //Method that Shows All Messages
-    @GetMapping("/messages")
-    public List<Message> getAllMessages() {
-        return messageRepository.findAll();
+    @GetMapping("/getAllmessages")
+    public ModelAndView getAllMessages() {
+       List<Message> messageList = messageRepository.getAllMessages();
+        ModelAndView mv = new ModelAndView("showMessages");
+        mv.addObject(messageList);
+        return mv;
+ 
     }
+    
+    @GetMapping("/getSentMessages")
+    public ModelAndView getSentMessages(User user) {
+    	String messageType = "Sent Messages";
+       List<Message> messageList = messageRepository.findSentMessages(UserController.user2.getId());
+       System.out.println(user.getId());
+        ModelAndView mv = new ModelAndView("showMessagesSimple");
+        for (Message m : messageList) {
+        }
+        mv.addObject("user",user);
+        mv.addObject("messageType", messageType);
+        mv.addObject(messageList);
+        return mv;
+ 
+    }
+    
+
+//    //Method that Shows All Messages
+//    @GetMapping("/messages")
+//    public List<Message> getAllMessages() {
+//        return messageRepository.findAll();
+//    }
 
     //Method that Creates a New Message
     @PostMapping("/messages")

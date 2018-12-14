@@ -1,21 +1,20 @@
 @charset "UTF-8";
 
 html {
-	background-image: url("pictures/night_forest.jpg");
+	background-image: url("pictures/campfire.jpg");
 }
 
 body {
     /* background-image: url("background.gif"); */
-    max-width: 700px;
+    font-family: calibri;
+    max-width: 600px;
     margin: auto;
-    height:100%;
     /* background-image: url("pictures/fireflies.png"); */
    	background-color: lavender
 }
 
 /* Bordered form */
 form {
-	
   border: 3px solid #f1f1f1;
 }
 
@@ -30,8 +29,8 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-.submit {
-  background-color: #4CAF50;
+button {
+  background-color: #004040;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -41,7 +40,7 @@ input[type=text], input[type=password] {
 }
 
 /* Add a hover effect for buttons */
-.submit:hover {
+button:hover {
   opacity: 0.8;
 }
 
@@ -85,7 +84,7 @@ span.psw {
   padding-top: 16px;
 }
 
-.reg:visited {
+a:link, a:visited {
  /*  background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
@@ -94,21 +93,38 @@ span.psw {
   cursor: pointer;
   width: 100%; */
   
-  background-color: #f44336;
+  background-color: #804040;
   color: white;
-  padding: 14px 25px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
 }
 
 
-.reg:hover, .reg:active {
-  background-color: red;
+a:hover, a:active {
+  background-color: #ff8040;
 }
 
+
+#buttonDivs{
+	width:200px;
+	max-width:200px
+}
+
+/* #buttonDivsSuper{
+	width:200px;
+	max-width:200px
+}
+ */
+ 
+ 
+/* a.second:hover, a.second:active {
+  background-color: blue;
+} */
+
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
+/* @media screen and (max-width: 300px) {
   span.psw {
     display: block;
     float: none;
@@ -116,4 +132,4 @@ span.psw {
   .cancelbtn {
     width: 100%;
   }
-}
+} */

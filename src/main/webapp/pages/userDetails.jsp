@@ -43,8 +43,9 @@ Password: <input type="text" name="password"><br/>
 Role: <input type="text" name="role"><br/>
 <input type="submit"/>
 </form><br/>
-
-
+<c:set var="userId" value="${user.id}" scope="session"/>
+<p>Edo!!!<c:out value="${user.id}"></c:out></p>
+<p>Edo!!!<c:out value="${user.created_at}"></c:out></p>
 
 
 
@@ -54,6 +55,12 @@ Id: <input type="text" name="userId">
 <br/>
 ${userNotFound}${user}
 
+<br/>
+<input type="submit"/>
+</form><br/>
+
+<h5 class = "codrops-top a">See Sent Messages</h5>
+<form action="getSentMessages" method = "get">
 <br/>
 <input type="submit"/>
 </form><br/>
@@ -82,6 +89,10 @@ ${userNotFound}${user}
 		<tr>
 			    <td><form:label path="role">Role:</form:label></td>
           <td><form:input path="role" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+			    <td><form:label path="id">Id:</form:label></td>
+          <td><form:input path="id" size="30" maxlength="30"></form:input></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit"
