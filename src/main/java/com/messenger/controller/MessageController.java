@@ -7,19 +7,30 @@ import com.messenger.repository.MessageRepository;
 //import com.example.easynotes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
 
 //revised at 15:24 11/12/2018
 
-@RestController
-@RequestMapping("/api")
+@Controller
+//@RequestMapping("/api")
 public class MessageController {
 
     @Autowired
     MessageRepository messageRepository;
+    
+//    @GetMapping("/getAllmessages")
+//    public ModelAndView findByNameSorted() {
+//       List<Message> messageList = messageRepository.getAllMessages();
+//        ModelAndView mv = new ModelAndView("showMessages");
+//        mv.addObject(messageList);
+//        return mv;
+// 
+//    }
 
     //Method that Shows All Messages
     @GetMapping("/messages")

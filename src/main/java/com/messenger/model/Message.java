@@ -20,12 +20,13 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
-
-//    @Column(nullable = false)
-//    private Long sender_id;
-  
     
+//    @ManyToOne
+//    @JoinColumn(name="sender_id")
+//    private User user;
 
+    @Column(nullable = true, updatable=false)
+    private Long sender_id;
 
 	@Column(nullable = true) //false
     private Long receiver_id;
@@ -93,13 +94,13 @@ public class Message {
 		this.id = id;
 	}
 
-//	public Long getSender_id() {
-//		return sender_id;
-//	}
-//
-//	public void setSender_id(Long sender_id) {
-//		this.sender_id = sender_id;
-//	}
+	public Long getSender_id() {
+		return sender_id;
+	}
+
+	public void setSender_id(Long sender_id) {
+		this.sender_id = sender_id;
+	}
 
 	public Long getReceiver_id() {
 		return receiver_id;
@@ -196,9 +197,10 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [ id=" + id + ",receiver_id=" + receiver_id + ", sent_at=" + sent_at
-		     + ", updated_at=" + updated_at + ", read_status=" + read_status +", sender_view=" + sender_view
-		     + ", receiver_view=" + receiver_view + ", subject=" + subject + ", text_content=" + text_content + " ]";
+		return "Message [id=" + id + ", sender_id=" + sender_id + ", receiver_id=" + receiver_id + ", sent_at="
+				+ sent_at + ", updated_at=" + updated_at + ", read_status=" + read_status + ", sender_view="
+				+ sender_view + ", receiver_view=" + receiver_view + ", subject=" + subject + ", text_content="
+				+ text_content + "]";
 	}
     
     

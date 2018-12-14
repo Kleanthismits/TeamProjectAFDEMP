@@ -1,6 +1,7 @@
 package com.messenger.repository;
 
 
+import com.messenger.model.Message;
 import com.messenger.model.User;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("from User where username = ?1")
 	User findByUsername(String username);
+
 
 
 }

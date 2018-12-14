@@ -48,7 +48,7 @@ public class User {
 	private Date updated_at;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "sender_id")
+	@JoinColumn(name = "sender_id" )
 	private Set<Message> messages = new HashSet<>();
 
 	

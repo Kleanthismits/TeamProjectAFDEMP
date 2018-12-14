@@ -1,19 +1,14 @@
 package com.messenger.controller;
 
 import com.messenger.exception.ResourceNotFoundException;
-//import com.example.easynotes.model.Note;
 import com.messenger.model.User;
-//import com.example.easynotes.repository.NoteRepository;
 import com.messenger.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
