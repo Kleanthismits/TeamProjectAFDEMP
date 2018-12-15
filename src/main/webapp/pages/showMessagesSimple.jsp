@@ -7,24 +7,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="demo.css">
-<link rel="stylesheet" href="showMessages.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/demo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/showMessages.css">
+
 <meta charset="UTF-8">
 <title>Show Messages</title>
 </head>
 <body>
 
 <div class="imgcontainer">
-    <img src="pictures/dog-footprint.png" alt="login_icon" class="login_icon">
+    <img src="${pageContext.request.contextPath}/pictures/dog-footprint.png" alt="login_icon" class="login_icon">
   </div>
 <div>${userNotFound}${user}</div>
 <p>Edo!!!<c:out value="${user.id}"/></p>
+<p>Edo!!!<c:out value="${user.username}"/></p>
 	<div style="text-align: center">
 		<table border="1" style="display: inline-block">
 			<tr>
 				<td colspan="6" style="border: none; text-align: center;">
-					<h2 class="codrops-demos a">${messageType}</h2>
+					<h2 class="codrops-demos a">Sent Messages</h2>
 				</td>
 			</tr>
 			<tr><th>Receiver</th>
@@ -38,6 +40,11 @@
 					<td>${item.sent_at}</td>
 					<td>${item.updated_at}</td>
 					<td>${item.subject}</td>
+					<td>
+					<form  method = "get" action = "deleteMessage/${item.id}">
+					<button type="submit">Delete</button>
+					</form>
+					</td>
 				</tr>
 			</c:forEach>
 

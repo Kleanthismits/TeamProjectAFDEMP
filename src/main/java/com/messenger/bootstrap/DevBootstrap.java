@@ -28,7 +28,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 	}
 
 	private void initData() {
-		User kleanthis = new User("Kleanthis","30071983","r1");
+		User kleanthis = new User("Kleanthis","1","r1");
 		Message ddd = new Message("Otimoit", "TextContent");
 		kleanthis.getMessages().add(ddd);
 		userRepository.save(kleanthis);

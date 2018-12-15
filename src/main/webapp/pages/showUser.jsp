@@ -48,8 +48,9 @@
 			</c:forEach>
 		</table>
 		
-		<a id="returnButton" href="/" style="margin:auto;">Return</a>
-		
+		<form method = "get" action ="/loggedIn">
+		<button type = "submit" id="returnButton"  style="margin:auto;">Return</button>
+		</form>
 		</fieldset>
 	</div>
 	<br>

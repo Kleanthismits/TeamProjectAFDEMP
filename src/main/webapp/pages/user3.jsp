@@ -9,7 +9,6 @@
 </head>
 <body>
 
-<form action="action_page.php">
   <div class="imgcontainer">
     <img src="pictures/werewolf.png" alt="login_icon" class="login_icon">
   </div>
@@ -26,25 +25,33 @@
   </div>
   
   <div style="float:right;">
-  <a id="buttonDivs" href="register2.jsp">View Sent Messages</a>
+   <form action = "getSentMessages" method ="get">
+  <button type="submit" id="buttonDivs" >View Outbox</button>
+  </form>
   </div>
   
   <br></br>
   <br></br>
   
-  <div style="margin:auto;">
-  <a id="buttonDivs" href="register2.jsp">Send New Message</a>
+<div style="margin:auto;">
+  <form action="/findByNameSortedToSend" method="get">
+  <button type="submit" id="buttonDivs" style="background-color:#008000">Send New Message</button>
+  </form>
   </div>
   
   <br></br>
   <br></br>
   
   <div style="float:left;">
-  <a id="buttonDivs" style="background-color:#008000" href="register2.jsp">View All Messages</a>
+  <form action = "getAllMessages" method ="get">
+  <button type="submit" id="buttonDivs" style="background-color:#008000" >View All Messages</button>
+  </form>
   </div>
   
   <div style="float:right;">
-  <a id="buttonDivs" style="background-color:#008000" href="register2.jsp">CRUD All Users</a> <br></br>
+  <form action = "findByNameSorted" method ="get">
+  <button type="submit" id="buttonDivs" style="background-color:#008000" >Edit Users</button>
+  </form>
   </div>
   
   <br></br>
@@ -81,7 +88,7 @@
     <a href="register2.jsp">Register</a>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div> -->
-</form>
+
 
 </body>
 </html>

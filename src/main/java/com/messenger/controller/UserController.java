@@ -6,6 +6,7 @@ import com.messenger.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,28 +15,35 @@ import java.util.Optional;
 
 @Controller
 //@RequestMapping("/api")
+@SessionAttributes("user")
 public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
-	static User user2;
+	//static User user2;
+	
+	 @ModelAttribute("user")
+	    public User getUser () {
+	        return new User();
+	    }
 
 	@PostMapping("/loggedIn")
-	public ModelAndView home(User user) {
+	public ModelAndView home(@ModelAttribute("user") User user,BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		String userNotFound = "Wrong username or password";
-		user2 = userRepository.findByUsername(user.getUsername());
-		if (user2 != null) {
-			if (user2.getPassword().equals(user.getPassword())) {
-				String welcomeUser = user.getUsername();
-				mv.addObject("welcomeUser", welcomeUser);
-				mv.addObject("user", user);
-				mv.setViewName("userDetails");
-			}else {
-				mv.addObject("userNotFound", userNotFound);
-				mv.setViewName("forward:/login");
-				mv.addObject("user", new User());
-			}
+		user = userRepository.findByUsername(user.getUsername());
+		//user2 = userRepository.findByUsername(user.getUsername());
+		if (user != null) {
+				if (user.getPassword().equals(user.getPassword())) {
+					String welcomeUser = user.getUsername();
+					mv.addObject("welcomeUser", welcomeUser);
+					mv.addObject("user", user);
+					mv.setViewName("user3");
+				}else {
+					mv.addObject("userNotFound", userNotFound);
+					mv.setViewName("forward:/login");
+					mv.addObject("user", new User());
+				}
 		}else {
 			mv.addObject("userNotFound", userNotFound);
 			mv.setViewName("forward:/login");
@@ -43,7 +51,14 @@ public class UserController {
 		}
 		return mv;
 	}
-
+	@GetMapping("/loggedIn")
+	public ModelAndView returnFromShowUser(@ModelAttribute("user") User user,BindingResult result) {
+		ModelAndView mv = new ModelAndView();
+					String welcomeUser = user.getUsername();
+					mv.addObject("user", user);
+					mv.setViewName("user3");
+		return mv;
+	}
 	// Method that Shows All Users
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
@@ -57,9 +72,12 @@ public class UserController {
 //  }
 	@PostMapping("/createUser")
 	public ModelAndView createUser(User user) {
-		userRepository.save(user);
+		User user2 = new User();
+		user2.setPassword(user.getPassword());
+		user2.setUsername(user.getUsername());
+		userRepository.save(user2);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("obj", user);
+		mv.addObject("user",user);
 		mv.setViewName("userDetails");
 		return mv;
 	}
@@ -123,6 +141,8 @@ public class UserController {
 		} else {
 			user.setRole(userDetails.getRole());
 		}
+		
+		
 //		user.setPassword(userDetails.getPassword());
 //		user.setRole(userDetails.getRole());
 		User updatedUser = userRepository.save(user);
@@ -132,6 +152,15 @@ public class UserController {
 		mv.addObject(userList);
 		mv.setViewName("showUser");
 		return mv;
+	}
+	
+    @GetMapping("/findByNameSortedToSend")
+	public ModelAndView findByNameSortedToSend() {
+		List<User> userList = userRepository.findByNameSorted();
+		ModelAndView mv = new ModelAndView("sendMessage");
+		mv.addObject(userList);
+		return mv;
+
 	}
 
 	// Method that Deletes a User with a certain Id

@@ -37,10 +37,12 @@ th {
 <p>Welcome ${welcomeUser}</p>
 <div class = "container" style=text-align:center>
 <h5 class ="codrops-top">Create a new user</h5>
+
 <form action="createUser" method = "POST">
 UserName: <input type="text" name="username"><br/>
 Password: <input type="text" name="password"><br/>
 Role: <input type="text" name="role"><br/>
+
 <input type="submit"/>
 </form><br/>
 <c:set var="userId" value="${user.id}" scope="session"/>

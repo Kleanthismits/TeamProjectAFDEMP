@@ -102,14 +102,15 @@ a:link, a:visited {
 }
 
 
-a:hover, a:active {
+#buttonDivs:hover, #buttonDivs:active {
   background-color: #ff8040;
 }
 
 
 #buttonDivs{
 	width:200px;
-	max-width:200px
+	max-width:200px;
+	display: inline-block;
 }
 
 /* #buttonDivsSuper{

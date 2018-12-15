@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Welcome</h1>
-	<form action="createUser" method="post">
+	<form action="registerUser" method="post">
 		<table style="with: 50%">
 			<tr>
 				<td>Username</td>

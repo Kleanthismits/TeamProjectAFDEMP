@@ -1,12 +1,9 @@
 package com.messenger.repository;
 
 
-import com.messenger.model.Message;
 import com.messenger.model.User;
 
 import java.util.List;
-import java.util.Optional;
-
 //import com.example.easynotes.model.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	@Query("from User order by username")
+	@Query("from User")
 	List<User>findByNameSorted();
 	
 	@Query("Select u.username from User u")

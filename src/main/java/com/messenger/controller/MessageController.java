@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -20,12 +21,13 @@ import java.util.List;
 
 @Controller
 //@RequestMapping("/api")
+@SessionAttributes("user")
 public class MessageController {
 
     @Autowired
     MessageRepository messageRepository;
     
-    @GetMapping("/getAllmessages")
+    @GetMapping("/getAllMessages")
     public ModelAndView getAllMessages() {
        List<Message> messageList = messageRepository.getAllMessages();
         ModelAndView mv = new ModelAndView("showMessages");
@@ -33,11 +35,10 @@ public class MessageController {
         return mv;
  
     }
-    
-    @GetMapping("/getSentMessages")
-    public ModelAndView getSentMessages(User user) {
-    	String messageType = "Sent Messages";
-       List<Message> messageList = messageRepository.findSentMessages(UserController.user2.getId());
+    @GetMapping("/findReceivedMessages")
+    public ModelAndView getReceivedMessages(User user) {
+    	String messageType = "Received Messages";
+       List<Message> messageList = messageRepository.findReceivedMessages(user.getId());
        System.out.println(user.getId());
         ModelAndView mv = new ModelAndView("showMessagesSimple");
         for (Message m : messageList) {
@@ -49,6 +50,21 @@ public class MessageController {
  
     }
     
+    @GetMapping("/getSentMessages")
+    public ModelAndView getSentMessages(@ModelAttribute("user") User user) {
+    	
+    	String messageType = "Sent Messages";
+       List<Message> messageList = messageRepository.findSentMessages(user.getId());
+       System.out.println(user.getId());
+        ModelAndView mv = new ModelAndView("showMessagesSimple");
+        for (Message m : messageList) {
+        }
+        mv.addObject("user",user);
+        mv.addObject("messageType", messageType);
+        mv.addObject(messageList);
+        return mv;
+ 
+    }
 
 //    //Method that Shows All Messages
 //    @GetMapping("/messages")
@@ -87,12 +103,15 @@ public class MessageController {
     }
   
     //Method that Deletes a Message with a certain Id
-    @DeleteMapping("/messages/{id}")
-    public ResponseEntity<?> deleteMessage(@PathVariable(value = "id") Long messageId) {
+    @GetMapping("/deleteMessage/{id}")
+    public ModelAndView deleteMessage(@PathVariable(value = "id") Long messageId,@ModelAttribute("user") User user) {
+    	ModelAndView mv = new ModelAndView();
         Message message = messageRepository.findById(messageId).orElseThrow(() -> new ResourceNotFoundException("Message", "id", messageId));
-
         messageRepository.delete(message);
-
-        return ResponseEntity.ok().build();
+        List<Message> messageList = messageRepository.findSentMessages(user.getId());
+        mv.setViewName("showMessagesSimple");
+        mv.addObject("user",user);
+        mv.addObject(messageList);
+        return mv;
     }
 }
