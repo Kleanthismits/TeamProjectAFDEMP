@@ -4,6 +4,8 @@ package com.messenger.repository;
 import com.messenger.model.User;
 
 import java.util.List;
+import java.util.Map;
+
 //import com.example.easynotes.model.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+	
+
 	
 	@Query("from User")
 	List<User>findByNameSorted();

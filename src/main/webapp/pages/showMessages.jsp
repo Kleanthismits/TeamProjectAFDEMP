@@ -22,7 +22,7 @@
 	<div style="text-align: center">
 		<table border="1" style="display: inline-block">
 			<tr>
-				<td colspan="6" style="border: none; text-align: center;">
+				<td colspan="10" style="border: none; text-align: center;">
 					<h2 class="codrops-demos a">Message List</h2>
 				</td>
 			</tr>
@@ -57,7 +57,9 @@
 		</table>
 	</div>
 
-	<a href="/" style="float: right">Go Back</a>
+	<form method = "get" action ="/loggedIn">
+		<button type = "submit" id="returnButton"  style="margin:auto;">Go Back</button>
+		</form>
 	<br />
 	
 

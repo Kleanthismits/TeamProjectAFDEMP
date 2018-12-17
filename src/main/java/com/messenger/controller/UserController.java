@@ -20,7 +20,6 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
-	//static User user2;
 	
 	 @ModelAttribute("user")
 	    public User getUser () {
@@ -31,12 +30,15 @@ public class UserController {
 	public ModelAndView home(@ModelAttribute("user") User user,BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		String userNotFound = "Wrong username or password";
-		user = userRepository.findByUsername(user.getUsername());
-		//user2 = userRepository.findByUsername(user.getUsername());
-		if (user != null) {
-				if (user.getPassword().equals(user.getPassword())) {
+		String password = user.getPassword();
+		User user2 = userRepository.findByUsername(user.getUsername());
+		if (user2 != null) {
+			user = userRepository.findByUsername(user.getUsername());
+				if (user2.getPassword().equals(password)) {
 					String welcomeUser = user.getUsername();
+					String userRole = user.getRole();
 					mv.addObject("welcomeUser", welcomeUser);
+					mv.addObject("userRole", userRole);
 					mv.addObject("user", user);
 					mv.setViewName("user3");
 				}else {
@@ -55,10 +57,13 @@ public class UserController {
 	public ModelAndView returnFromShowUser(@ModelAttribute("user") User user,BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 					String welcomeUser = user.getUsername();
+					String userRole = user.getRole();
+					mv.addObject("userRole", userRole);
 					mv.addObject("user", user);
 					mv.setViewName("user3");
 		return mv;
 	}
+	
 	// Method that Shows All Users
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
@@ -81,6 +86,16 @@ public class UserController {
 		mv.setViewName("userDetails");
 		return mv;
 	}
+	
+    @GetMapping("showCreateMessage")
+    public ModelAndView showCreateMessage(@ModelAttribute("user") User user) {
+    	List<User> userList = userRepository.findByNameSorted();
+    	ModelAndView mv = new ModelAndView();
+    	mv.addObject(userList);
+    	mv.addObject("user", user);
+    	mv.setViewName("sendNewMessage2");
+    	return mv;
+    }
 	
 	@PostMapping("/registerUser")
 	public ModelAndView registerUser(User user) {
@@ -148,6 +163,8 @@ public class UserController {
 		User updatedUser = userRepository.save(user);
 		List<User> userList = userRepository.findByNameSorted();
 		ModelAndView mv = new ModelAndView();
+		String userUpdated = "User succesfully updated";
+		mv.addObject("userUpdated", userUpdated);
 		mv.addObject("obj", userDetails);
 		mv.addObject(userList);
 		mv.setViewName("showUser");
@@ -177,10 +194,12 @@ public class UserController {
 	public ModelAndView deleteUser(@RequestParam Long userId, User userDetails) {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-
 		userRepository.delete(user);
 		List<User> userList = userRepository.findByNameSorted();
+		String userDeleted = "User succesfully deleted";
+		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("userDeleted", userDeleted);
 		mv.addObject("obj", userDetails);
 		mv.addObject(userList);
 		mv.setViewName("showUser");

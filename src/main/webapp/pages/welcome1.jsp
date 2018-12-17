@@ -19,25 +19,19 @@
   </div>
 
   <div class="container">
-    <label for="uname"><b>Username</b></label><p>${userNotFound}</p>
+    <label for="uname"><b>Username</b></label>${userNotFound}
     <input type="text" placeholder="Enter Username" name="username" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
  <input type="submit" value = "Login" class = "submit">
-    <!-- <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label> -->
-    <!-- <label>
-      <a href="register.jsp">Register</a>
-    </label> -->
+
   </div>
   </form>
 
   <div class="container" style="background-color:#f1f1f1">
  <form action="register" method="get">
     <input type="submit" value = "Register" class = "reg">
-    <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
     </form >
   </div>
 

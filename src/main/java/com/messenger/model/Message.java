@@ -56,15 +56,18 @@ public class Message {
     @Column(nullable = false, columnDefinition = "VARCHAR(250)")
     private String text_content;
     
+    @Column
+    private String username;
+    
     
 
 	public Message() {
 		super();
 	}
-
+	
 
 	public Message(Long id, Long sender_id, Long receiver_id, Date sent_at, Date updated_at, boolean read_status,
-			boolean sender_view, boolean receiver_view, String subject, String text_content) {
+			boolean sender_view, boolean receiver_view, String subject, String text_content, String username) {
 		super();
 		this.id = id;
 		this.sender_id = sender_id;
@@ -76,6 +79,7 @@ public class Message {
 		this.receiver_view = receiver_view;
 		this.subject = subject;
 		this.text_content = text_content;
+		this.username = username;
 	}
 
 	
@@ -201,6 +205,16 @@ public class Message {
 				+ sent_at + ", updated_at=" + updated_at + ", read_status=" + read_status + ", sender_view="
 				+ sender_view + ", receiver_view=" + receiver_view + ", subject=" + subject + ", text_content="
 				+ text_content + "]";
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
     
     

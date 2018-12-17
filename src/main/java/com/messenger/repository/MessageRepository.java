@@ -12,13 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-
-	
-	//@Query("select u.username,m.subject,m.sent_at,m.updated_at from Message m inner join m.user u on u.id = m.sender_id")
-//	@Query(
-//			value="select u.username,m.subject,m.sent_at,m.updated_at from users u \n" + 
-//					"inner join messages m on u.id = m.user_id",
-//			nativeQuery=true)
 	
     @Query("from Message order by id")
     List<Message> findAllUserMessages();
@@ -29,7 +22,14 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("from Message where receiver_id=?1")
     List<Message> findReceivedMessages(Long receiver_id);
     
-    
 	@Query("from Message")
 	List<Message>getAllMessages();
+	
+	//change
+    @Query("from Message where sender_id=?1 and sender_view=0")
+    List<Message> findSentMessagesR1R2(Long sender_id);
+    
+    //change
+    @Query("from Message where receiver_id=?1 and sender_view=0")
+    List<Message> findReceivedMessagesR1R2(Long receiver_id);
 }

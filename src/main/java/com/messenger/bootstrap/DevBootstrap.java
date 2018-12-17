@@ -50,5 +50,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 		kostas.getMessages().add(nnn);
 		messageRepository.save(nnn);
 		userRepository.save(kostas);
+		Message kkk = new Message("Trito", "Yo");
+		kostas.getMessages().add(kkk);
+		messageRepository.save(kkk);
+		userRepository.save(kostas);
 	}
 }

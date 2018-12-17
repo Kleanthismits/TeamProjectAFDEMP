@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +23,10 @@
   <fieldset>
   <div class="container">
   
-  <div style="float:left;">
-  <a id="buttonDivs" href="register2.jsp" >View Inbox</a>
+<div style="float:left;">
+  <form action = "findReceivedMessages" method ="get">
+  <button type="submit" id="buttonDivs" >View Inbox</button>
+  </form>
   </div>
   
   <div style="float:right;">
@@ -34,7 +39,7 @@
   <br></br>
   
 <div style="margin:auto;">
-  <form action="/findByNameSortedToSend" method="get">
+  <form action="showCreateMessage" method="get">
   <button type="submit" id="buttonDivs" style="background-color:#008000">Send New Message</button>
   </form>
   </div>
@@ -42,6 +47,7 @@
   <br></br>
   <br></br>
   
+  <c:if test="${userRole == 'r1'}">
   <div style="float:left;">
   <form action = "getAllMessages" method ="get">
   <button type="submit" id="buttonDivs" style="background-color:#008000" >View All Messages</button>
@@ -53,11 +59,13 @@
   <button type="submit" id="buttonDivs" style="background-color:#008000" >Edit Users</button>
   </form>
   </div>
-  
+  </c:if>
   <br></br>
   <br></br>
  <div style="float:right;">
+ <form action="login" method = "post">
 	<button type="submit" style="max-width:100px; ">Logout</button>
+	</form>
 	</div>
   
  

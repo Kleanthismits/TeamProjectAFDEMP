@@ -61,7 +61,8 @@
 	
 	<br />
 	<div style="text-align: center"><%-- ${user} --%>
-	<p>User Successfully Updated!</p>
+	
+	<p>${userUpdated}</p>
 	</div>
 	<br />
 
@@ -81,6 +82,28 @@
 			
 			<br>
 			<input class="updatebutton" type="submit" value="Update" style="font-family: calibri;"/>
+			<br></br>
+			</fieldset>
+		</form>
+		<br />
+		<br></br>
+	</div>
+	
+	
+		<div style="text-align: center"><%-- ${user} --%>
+	<p>${userDeleted}</p>
+	</div>
+	<br />
+
+	<div class="container" style="text-align:center;">
+		<h5 class="codrops-top" style=" font-size: large; font-family: calibri;">Delete User By ID</h5>
+		<br>
+		<form action="deleteUser" method="POST">
+		<fieldset>
+		<br>
+			<div>Id: <input style="float:right"type="text" name="userId"></div><br /> 
+			<br>
+			<input class="updatebutton" type="submit" value="Delete" style="font-family: calibri;"/>
 			<br></br>
 			</fieldset>
 		</form>
