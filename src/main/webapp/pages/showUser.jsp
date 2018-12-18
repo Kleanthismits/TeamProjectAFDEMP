@@ -55,10 +55,6 @@
 	</div>
 	<br>
 	
-	<!-- <div style="float:right">
-	<a id="returnButton" href="/" style="margin:auto;">Return</a>
-	</div> -->
-	
 	<br />
 	<div style="text-align: center"><%-- ${user} --%>
 	
@@ -75,7 +71,11 @@
 		<fieldset>
 		<!-- <legend>Update a user</legend> -->
 		<br>
-			<div>Id: <input style="float:right"type="text" name="userId"></div><br /> 
+			<div>Id: <select name = "userId">
+								<c:forEach items="${userList}" var="user" varStatus = "status">
+									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
+								</c:forEach>
+							</select></div><br /> 
 			<div>UserName: <input style="float:right" type="text" name="userUsername"></div><br /> 
 			<div>Password: <input style="float:right"type="text" name="userPassword"></div><br /> 
 			<div>Role: <input style="float:right"type="text" name="userRole"></div><br />
@@ -86,36 +86,6 @@
 			<br></br>
 			</fieldset>
 		</form>
-		<%-- <form:form method="post" modelAttribute="userDetails" action="updateUser">
-<table>
-		<tr>
-			<th colspan="2">Update User</th>
-		</tr>
-		<tr>
-	<form:hidden path="id" /> 
-	
-          <td><form:label path="username">Username:</form:label></td>
-          <td><form:input path="username" size="30" maxlength="30"></form:input></td>
-        </tr>
-		<tr>
-			    <td><form:label path="password">Password:</form:label></td>
-          <td><form:input path="password" size="30" maxlength="30"></form:input></td>
-		</tr>
-		<tr>
-			    <td><form:label path="role">Role:</form:label></td>
-          <td><form:input path="role" size="30" maxlength="30"></form:input></td>
-		</tr>
-		<tr>
-			    <td><form:label path="id">Id:</form:label></td>
-          <td><form:input path="id" size="30" maxlength="30"></form:input></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit"
-				class = "bluebutton" /></td>
-		</tr>
-	</table> 
-</form:form> --%>
-		
 		<br />
 		<br></br>
 	</div>
@@ -132,7 +102,12 @@
 		<form action="deleteUser" method="POST">
 		<fieldset>
 		<br>
-			<div>Id: <input style="float:right"type="text" name="userId"></div><br /> 
+			<div>Id: <select name = "userId">
+								<c:forEach items="${userList}" var="user" varStatus = "status">
+									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
+								</c:forEach>
+							</select><!-- <input style="float:right"type="text" name="userId"></div><br /> --> 
+			<br></div><br /> 
 			<br>
 			<input class="updatebutton" type="submit" value="Delete" style="font-family: calibri;"/>
 			<br></br>

@@ -93,15 +93,28 @@ public class UserController {
     	ModelAndView mv = new ModelAndView();
     	mv.addObject(userList);
     	mv.addObject("user", user);
-    	mv.setViewName("sendNewMessage2");
+    	mv.setViewName("sendNewMessageFinal");
     	return mv;
     }
 	
+//	@PostMapping("/registerUser")
+//	public ModelAndView registerUser(User user) {
+//		userRepository.save(user);
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("user", new User());
+//		mv.setViewName("welcome1");
+//		return mv;
+//	}
+	
+	//change
 	@PostMapping("/registerUser")
-	public ModelAndView registerUser(User user) {
-		userRepository.save(user);
+	public ModelAndView registerUser(@RequestParam String username,@RequestParam String password) {
+		User newUser= new User();
+		newUser.setUsername(username);
+		newUser.setPassword(password);
+		userRepository.save(newUser);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", new User());
+		//mv.addObject("user", new User());
 		mv.setViewName("welcome1");
 		return mv;
 	}
@@ -182,7 +195,7 @@ public class UserController {
 	}
 
 	@PostMapping("/deleteUser")
-	public ModelAndView deleteUser(@RequestParam Long userId,@RequestParam String userRole, User userDetails) {
+	public ModelAndView deleteUser(@RequestParam Long userId, User userDetails) {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 		userRepository.delete(user);

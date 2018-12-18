@@ -31,7 +31,7 @@
 			<td>Text :<input maxlength="3" size="3" value="250" id="counter">
 						<textarea name = "text_content" onkeyup="textCounter(this,'counter',250);" rows="5" cols="50" id="message" maxlength="250" placeholder="Input text here"></textarea></td>
 				</tr>
-				<input type="text" name="sender_id" value="${user.id}" >
+				<input type="text" name="sender_id" value="${user.id}" hidden = "true">
 				<tr>
 			<td><button type="submit">Send</button></td>
 				</tr>

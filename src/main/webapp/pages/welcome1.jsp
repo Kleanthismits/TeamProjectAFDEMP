@@ -35,7 +35,7 @@
     <input type="submit" value = "Register" class = "reg">
     </form >
   </div>
-  <sql:query var = "rs" dataSource = "${messenger}">select * from users</sql:query>
+ 
 
 
 </body>

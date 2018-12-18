@@ -36,7 +36,7 @@
 			<c:forEach items="${messageList}" var="item" varStatus = "status">
 			
 				<tr>
-					<td>${item.username}</td>
+					<td>${item.receiverName}</td>
 					<td>${item.sent_at}</td>
 					<td>${item.updated_at}</td>
 					<td>${item.subject}</td>

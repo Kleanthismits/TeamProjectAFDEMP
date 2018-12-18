@@ -85,10 +85,11 @@ public class Message {
 	}
 
 	
-	public Message(String subject, String text_content) {
+	public Message(String subject, String text_content,Long receiver_id) {
 		super();
 		this.subject = subject;
 		this.text_content = text_content;
+		this.receiver_id = receiver_id;
 	}
 
 

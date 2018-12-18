@@ -74,17 +74,6 @@ public class MessageController {
         return mv;
  
     }
-//    //Method that Shows All Messages
-//    @GetMapping("/messages")
-//    public List<Message> getAllMessages() {
-//        return messageRepository.findAll();
-//    }
-
-    //Method that Creates a New Message
-//    @PostMapping("/messages")
-//    public Message createMessage(@Valid @RequestBody Message message) {
-//        return messageRepository.save(message);
-//    }
     
     //Method that Creates a New Message
     @PostMapping("createMessage")
@@ -107,7 +96,7 @@ public class MessageController {
 		mv.addObject("userList",userList);
 		mv.addObject("user",user);
 		mv.addObject("message",message);
-		mv.setViewName("sendNewMessage2");
+		mv.setViewName("sendNewMessageFinal");
 		return mv;
 	}
 
