@@ -16,7 +16,6 @@
   
   <div>
   <p class="welcome"> Enter your info below </p>
-  <!-- <p class="welcome"> CryWolf </p> <p class="welcome" style="font-size:20px;"> Messenger </p> -->
   </div>
 
   <div class="container">

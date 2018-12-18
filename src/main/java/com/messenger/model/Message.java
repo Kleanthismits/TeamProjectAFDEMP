@@ -56,8 +56,10 @@ public class Message {
     @Column(nullable = false, columnDefinition = "VARCHAR(250)")
     private String text_content;
     
-    @Column
-    private String username;
+    @Transient
+    private String senderName;
+    @Transient
+    private String receiverName;
     
     
 
@@ -67,7 +69,7 @@ public class Message {
 	
 
 	public Message(Long id, Long sender_id, Long receiver_id, Date sent_at, Date updated_at, boolean read_status,
-			boolean sender_view, boolean receiver_view, String subject, String text_content, String username) {
+			boolean sender_view, boolean receiver_view, String subject, String text_content, String senderName) {
 		super();
 		this.id = id;
 		this.sender_id = sender_id;
@@ -79,7 +81,7 @@ public class Message {
 		this.receiver_view = receiver_view;
 		this.subject = subject;
 		this.text_content = text_content;
-		this.username = username;
+		this.senderName = senderName;
 	}
 
 	
@@ -199,6 +201,27 @@ public class Message {
 		return true;
 	}
 
+
+	public String getSenderName() {
+		return senderName;
+	}
+
+
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+
+
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Message [id=" + id + ", sender_id=" + sender_id + ", receiver_id=" + receiver_id + ", sent_at="
@@ -208,14 +231,8 @@ public class Message {
 	}
 
 
-	public String getUsername() {
-		return username;
-	}
 
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
     
     
  

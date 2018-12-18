@@ -76,15 +76,46 @@
 		<!-- <legend>Update a user</legend> -->
 		<br>
 			<div>Id: <input style="float:right"type="text" name="userId"></div><br /> 
-			<div>UserName: <input style="float:right" type="text" name="username"></div><br /> 
-			<div>Password: <input style="float:right"type="text" name="password"></div><br /> 
-			<div>Role: <input style="float:right"type="text" name="role"></div><br />
+			<div>UserName: <input style="float:right" type="text" name="userUsername"></div><br /> 
+			<div>Password: <input style="float:right"type="text" name="userPassword"></div><br /> 
+			<div>Role: <input style="float:right"type="text" name="userRole"></div><br />
+			
 			
 			<br>
 			<input class="updatebutton" type="submit" value="Update" style="font-family: calibri;"/>
 			<br></br>
 			</fieldset>
 		</form>
+		<%-- <form:form method="post" modelAttribute="userDetails" action="updateUser">
+<table>
+		<tr>
+			<th colspan="2">Update User</th>
+		</tr>
+		<tr>
+	<form:hidden path="id" /> 
+	
+          <td><form:label path="username">Username:</form:label></td>
+          <td><form:input path="username" size="30" maxlength="30"></form:input></td>
+        </tr>
+		<tr>
+			    <td><form:label path="password">Password:</form:label></td>
+          <td><form:input path="password" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+			    <td><form:label path="role">Role:</form:label></td>
+          <td><form:input path="role" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+			    <td><form:label path="id">Id:</form:label></td>
+          <td><form:input path="id" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit"
+				class = "bluebutton" /></td>
+		</tr>
+	</table> 
+</form:form> --%>
+		
 		<br />
 		<br></br>
 	</div>

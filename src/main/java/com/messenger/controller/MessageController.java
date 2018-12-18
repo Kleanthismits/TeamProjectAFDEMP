@@ -23,7 +23,6 @@ import java.util.List;
 //revised at 15:24 11/12/2018
 
 @Controller
-//@RequestMapping("/api")
 @SessionAttributes("user")
 public class MessageController {
 
@@ -35,6 +34,10 @@ public class MessageController {
     @GetMapping("/getAllMessages")
     public ModelAndView getAllMessages() {
        List<Message> messageList = messageRepository.getAllMessages();
+       for(Message m : messageList) {
+    	   m.setSenderName(userRepository.findCustomById(m.getSender_id()));
+    	   m.setReceiverName(userRepository.findCustomById(m.getReceiver_id()));
+       }
         ModelAndView mv = new ModelAndView("showMessages");
         mv.addObject(messageList);
         return mv;
@@ -45,7 +48,9 @@ public class MessageController {
     public ModelAndView getReceivedMessages(User user) {
     	String messageType = "Received Messages";
        List<Message> messageList = messageRepository.findReceivedMessages(user.getId());
-       System.out.println(user.getId());
+       for(Message m : messageList) {
+    	   m.setSenderName(userRepository.findCustomById(m.getSender_id()));
+       }
         ModelAndView mv = new ModelAndView("showMessages");
         for (Message m : messageList) {
         }
@@ -59,6 +64,9 @@ public class MessageController {
     public ModelAndView getSentMessages(@ModelAttribute("user") User user) {
     	String messageType = "Sent Messages";
        List<Message> messageList = messageRepository.findSentMessages(user.getId());
+       for(Message m : messageList) {
+    	   m.setReceiverName(userRepository.findCustomById(m.getReceiver_id()));
+       }
         ModelAndView mv = new ModelAndView("showMessagesSimple");
         mv.addObject("user",user);
         mv.addObject("messageType", messageType);
@@ -86,7 +94,9 @@ public class MessageController {
 		message2.setText_content(message.getText_content());
 		message2.setSender_id(message.getSender_id());
 		message2.setReceiver_id(message.getReceiver_id());
-		message2.setUsername(userRepository.findCustomById(message2.getReceiver_id()));
+		//message2.setUsername(user.getUsername());
+		
+		System.out.println(user.getUsername());
 		System.out.println(userRepository.findCustomById(message2.getReceiver_id()));
 		if(message2.getReceiver_id()==message2.getSender_id()) {
 			message2.setSubject("Self Note: " + message.getSubject());
@@ -100,10 +110,6 @@ public class MessageController {
 		mv.setViewName("sendNewMessage2");
 		return mv;
 	}
-    
-
-    
-    
 
     //Method that Shows a Message with a certain Id
     @GetMapping("/messages/{id}")
@@ -115,6 +121,9 @@ public class MessageController {
     public ModelAndView seeMessageById(@PathVariable(value ="id") Long id) {
     	ModelAndView mv = new ModelAndView();
     	Message message2 = messageRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Message", "id", id));
+    	String receiver = userRepository.findCustomById(message2.getReceiver_id());
+    	System.out.println(receiver + "receiver");
+    	mv.addObject("receiver",receiver);
     	mv.setViewName("viewMessage");
     	mv.addObject("message", message2);
         return mv;

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-//@RequestMapping("/api")
 @SessionAttributes("user")
 public class UserController {
 
@@ -56,6 +55,7 @@ public class UserController {
 	@GetMapping("/loggedIn")
 	public ModelAndView returnFromShowUser(@ModelAttribute("user") User user,BindingResult result) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("Role: " +user.getRole());
 					String welcomeUser = user.getUsername();
 					String userRole = user.getRole();
 					mv.addObject("userRole", userRole);
@@ -127,9 +127,11 @@ public class UserController {
 	}
 
 	@GetMapping("/findByNameSorted")
-	public ModelAndView findByNameSorted() {
+	public ModelAndView findByNameSorted(@ModelAttribute("user")User user,User userDetails) {
 		List<User> userList = userRepository.findByNameSorted();
 		ModelAndView mv = new ModelAndView("showUser");
+		mv.addObject("userDetails",userDetails);
+		mv.addObject("user",user);
 		mv.addObject(userList);
 		return mv;
 
@@ -137,35 +139,34 @@ public class UserController {
 
 	// Method that Updates the attributes of a User with a certain Id
 	@PostMapping("/updateUser")
-	public ModelAndView updateUser(@RequestParam Long userId, User userDetails) {
-
-		User user = userRepository.findById(userId)
+	public ModelAndView updateUser(@ModelAttribute("user")User user,@RequestParam Long userId,@RequestParam String userUsername,
+			@RequestParam String userRole,@RequestParam String userPassword) {
+		User user2 = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-		if ((userDetails.getUsername() == null) || (userDetails.getUsername().equals(""))) {
-			user.setUsername(user.getUsername());
+		if ((userUsername == null) || (userUsername.equals(""))) {
+			user2.setUsername(user2.getUsername());
 		} else {
-			user.setUsername(userDetails.getUsername());
+			user2.setUsername(userUsername);
 		}
-		if ((userDetails.getPassword() == null) || (userDetails.getPassword().equals(""))) {
-			user.setPassword(user.getPassword());
+		if ((userPassword == null) || (userPassword.equals(""))) {
+			user2.setPassword(user2.getPassword());
 		} else {
-			user.setPassword(userDetails.getPassword());
+			user2.setPassword(userPassword);
 		}
-		if ((userDetails.getRole() == null) || (userDetails.getRole().equals(""))) {
-			user.setRole(user.getRole());
+		if ((userRole == null) || (userRole.equals(""))) {
+			user2.setRole(user2.getRole());
 		} else {
-			user.setRole(userDetails.getRole());
+			user2.setRole(userRole);
 		}
 		
-		
-//		user.setPassword(userDetails.getPassword());
-//		user.setRole(userDetails.getRole());
-		User updatedUser = userRepository.save(user);
+		userRepository.save(user2);
 		List<User> userList = userRepository.findByNameSorted();
 		ModelAndView mv = new ModelAndView();
 		String userUpdated = "User succesfully updated";
+	
 		mv.addObject("userUpdated", userUpdated);
-		mv.addObject("obj", userDetails);
+		//mv.addObject("userDetails",userDetails);
+		mv.addObject("user",user);
 		mv.addObject(userList);
 		mv.setViewName("showUser");
 		return mv;
@@ -180,18 +181,8 @@ public class UserController {
 
 	}
 
-	// Method that Deletes a User with a certain Id
-//	@DeleteMapping("/users/{id}")
-//	public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId) {
-//		User user = userRepository.findById(userId)
-//				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-//
-//		userRepository.delete(user);
-//
-//		return ResponseEntity.ok().build();
-//	}
 	@PostMapping("/deleteUser")
-	public ModelAndView deleteUser(@RequestParam Long userId, User userDetails) {
+	public ModelAndView deleteUser(@RequestParam Long userId,@RequestParam String userRole, User userDetails) {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 		userRepository.delete(user);

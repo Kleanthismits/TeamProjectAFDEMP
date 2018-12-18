@@ -7,21 +7,21 @@
   <form  method = "post" action = "updateMessage">
   <table>
 				<tr>
-					<td>Receiver : ${item.receiver_id}</td>
+					<td>Receiver : ${receiver}</td>
 				</tr>
 				
 				<tr>
-					<td>Date Sent : ${item.sent_at}</td>
+					<td>Date Sent : ${message.sent_at}</td>
 				</tr>
 				
 				<tr>
-					<td>Date Updated : ${item.updated_at}</td>
+					<td>Date Updated : ${message.updated_at}</td>
 				<tr>
-					<td>Subject : <input type="text" name="subject" value="${item.subject}"></td>
+					<td>Subject : <input type="text" name="subject" value="${message.subject}"></td>
 				</tr>
 				
 				<tr>
-					<td>Text :<input type="text" name="text_content" value="${item.text_content}"></td>
+					<td>Text :<input type="text" name="text_content" value="${message.text_content}"></td>
 				</tr>
 				
 				<tr>

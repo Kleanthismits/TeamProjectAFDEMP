@@ -33,7 +33,7 @@ public class User {
 	private String password;
 
 	 @Column(nullable = false, columnDefinition = "VARCHAR(25) DEFAULT 'r1'")
-	private String role="r1";
+	private String role="r3";
 
 	@Column(nullable = true, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
