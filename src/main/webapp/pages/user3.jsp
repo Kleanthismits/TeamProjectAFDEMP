@@ -17,7 +17,7 @@
   </div>
   
   <div>
-  <p class="welcome">Welcome ${welcomeUser} </p> <p class="welcome" style="font-size:20px;"> What would you like to do? </p>
+  <p class="welcome">Welcome ${welcomeUser} </p>
   </div>
 	
   <fieldset>
@@ -47,7 +47,7 @@
   <br></br>
   <br></br>
   
-  <c:if test="${userRole == 'r1'}">
+  <c:if test="${userRole.equals('r1')}">
   <div style="float:left;">
   <form action = "getAllMessages" method ="get">
   <button type="submit" id="buttonDivs" style="background-color:#008000" >View All Messages</button>
@@ -62,10 +62,12 @@
   </c:if>
   <br></br>
   <br></br>
- <div style="float:right;">
+<div style="float:left;">
  <form action="pdfReport" method = "get" target = _blank>
 	<button type="submit" style="max-width:100px; ">Print</button>
 	</form>
+	</div>
+	 <div style="float:right;">
  <form action="login" method = "post">
 	<button type="submit" style="max-width:100px; ">Logout</button>
 	</form>

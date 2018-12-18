@@ -71,7 +71,8 @@
 		<fieldset>
 		<!-- <legend>Update a user</legend> -->
 		<br>
-			<div>Id: <select name = "userId">
+			<div>Id: <select name = "userId" required oninvalid="this.setCustomValidity('Please choose an ID')"><!-- change -->
+								<option value="" disabled selected>Select your option</option><!-- change -->
 								<c:forEach items="${userList}" var="user" varStatus = "status">
 									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
 								</c:forEach>
@@ -102,7 +103,8 @@
 		<form action="deleteUser" method="POST">
 		<fieldset>
 		<br>
-			<div>Id: <select name = "userId">
+			<div>Id: <select name = "userId" required oninvalid="this.setCustomValidity('Please choose an ID')">
+								<option value="" disabled selected>Select your option</option>
 								<c:forEach items="${userList}" var="user" varStatus = "status">
 									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
 								</c:forEach>

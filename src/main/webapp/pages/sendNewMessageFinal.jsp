@@ -22,7 +22,8 @@
 
 
 				<tr>
-					<td>Receiver : <select name="receiver_id">
+					<td>Receiver : <select name="receiver_id" required oninvalid="this.setCustomValidity('Please choose a Receiver')">
+							<option value="" disabled selected>Select your option</option>
 							<c:forEach items="${userList}" var="user" varStatus="status">
 								<option name="receiver_id" value="${user.id}">${user.username}</option>
 							</c:forEach>

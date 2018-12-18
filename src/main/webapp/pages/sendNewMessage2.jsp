@@ -37,6 +37,12 @@
 				</tr>
 	</table>
 </form>
+<script type="text/javascript">
+var audio1 = document.getElementById('sound1');
+function playSound1(){
+    audio1.play();
+}
+</script>
 <script>
 function textCounter(field,field2,maxlimit)
 {
