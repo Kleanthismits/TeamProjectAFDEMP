@@ -6,19 +6,25 @@ import com.messenger.model.User;
 //import com.example.easynotes.model.Note;
 import com.messenger.repository.MessageRepository;
 import com.messenger.repository.UserRepository;
+import com.messenger.util.GeneratedPdfReport;
 
 //import com.example.easynotes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 //revised at 15:24 11/12/2018
 
@@ -75,6 +81,25 @@ public class MessageController {
  
     }
     
+    @GetMapping(value = "/pdfReport", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> messagesReport(@ModelAttribute("user") User user) throws IOException {
+
+    	 List<Message> messageList = messageRepository.getAllMessages();
+         for(Message m : messageList) {
+      	   m.setReceiverName(userRepository.findCustomById(m.getReceiver_id()));
+      	   m.setSenderName(userRepository.findCustomById(m.getSender_id()));
+         }
+        ByteArrayInputStream bis = GeneratedPdfReport.messagesReport(messageList);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=messagesreport.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
+    }
     //Method that Creates a New Message
     @PostMapping("createMessage")
 	public ModelAndView createMessage(Message message, User user) {

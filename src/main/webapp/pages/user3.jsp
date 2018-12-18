@@ -63,6 +63,9 @@
   <br></br>
   <br></br>
  <div style="float:right;">
+ <form action="pdfReport" method = "get" target = _blank>
+	<button type="submit" style="max-width:100px; ">Print</button>
+	</form>
  <form action="login" method = "post">
 	<button type="submit" style="max-width:100px; ">Logout</button>
 	</form>
