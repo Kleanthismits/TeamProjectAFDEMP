@@ -10,8 +10,9 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="demo.css">
 <link rel="stylesheet" href="showUser.css">
+<link rel="stylesheet" href="general.css">
 <meta charset="UTF-8">
-<title>Show User</title>
+<title>Users List</title>
 </head>
 <body>
 
@@ -22,6 +23,7 @@
   <br>
 	<div style="text-align: center">
 	<fieldset id="userList">
+	${user.username}
 		<table id="userlistTable" border="1" style="display: inline-block">
 			<tr>
 				<td colspan="6" style="border: none; text-align: center">
@@ -45,6 +47,7 @@
 					<td>${item.created_at}</td>
 					<td>${item.updated_at}</td>
 				</tr>
+				
 			</c:forEach>
 		</table>
 		
@@ -53,70 +56,92 @@
 		</form>
 		</fieldset>
 	</div>
-	<br>
-	
-	<br />
-	<div style="text-align: center"><%-- ${user} --%>
-	
-	<p>${userUpdated}</p>
-	</div>
-	<br />
+<br><br><br>
 
-	<div class="container" style="text-align:center;">
-		<h5 class="codrops-top" style=" font-size: large; font-family: calibri;">Update user info</h5>
-		
-		<br>
-
-		<form action="updateUser" method="POST">
-		<fieldset>
-		<!-- <legend>Update a user</legend> -->
-		<br>
-			<div>Id: <select name = "userId" required oninvalid="this.setCustomValidity('Please choose an ID')"><!-- change -->
-								<option value="" disabled selected>Select your option</option><!-- change -->
-								<c:forEach items="${userList}" var="user" varStatus = "status">
-									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
-								</c:forEach>
-							</select></div><br /> 
-			<div>UserName: <input style="float:right" type="text" name="userUsername"></div><br /> 
-			<div>Password: <input style="float:right"type="text" name="userPassword"></div><br /> 
-			<div>Role: <input style="float:right"type="text" name="userRole"></div><br />
+	<div class="container" style="text-align: center;">
+		<h5 class="codrops-top"
+			style="font-size: large; font-family: calibri;">Edit user info</h5>
 			
-			
-			<br>
-			<input class="updatebutton" type="submit" value="Update" style="font-family: calibri;"/>
-			<br></br>
-			</fieldset>
-		</form>
-		<br />
-		<br></br>
-	</div>
-	
-	
-		<div style="text-align: center"><%-- ${user} --%>
-	<p>${userDeleted}</p>
-	</div>
-	<br />
+		<br>
 
+		<div id="confirmationDiv">
+			<%-- ${user} --%>
+			<p>${userUpdated}</p>
+		</div>
+
+		<div id="confirmationDiv">
+			<%-- ${user} --%>
+			<p>${userDeleted}</p>
+		</div>
+
+		<br>
+
+		<fieldset class="second">
+
+			<form action="updateUser" method="POST">
+				<fieldset class="third" style="float: left;">
+					<legend>Update user</legend>
+					<br>
+					<div>
+						Id: <select name="userId" required
+							oninvalid="this.setCustomValidity('Please choose an ID')">
+							<!-- change -->
+							<option value="" disabled selected>Select user</option>
+							<!-- change -->
+							<c:forEach items="${userList}" var="user" varStatus="status">
+								<option name="userId" value="${user.id}">${user.id}.${user.username}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<br />
+					<div>
+						UserName: <input type="text" name="userUsername">
+					</div>
+					<br />
+					<div>
+						Password: <input type="text" name="userPassword">
+					</div>
+					<br />
+					<div>
+						Role: <input type="text" name="userRole">
+					</div>
+					<br /> <br> <input class="updatebutton" type="submit"
+						value="Update" style="font-family: calibri;" /> <br></br>
+				</fieldset>
+			</form>
+
+			<!-- </div>
 	<div class="container" style="text-align:center;">
-		<h5 class="codrops-top" style=" font-size: large; font-family: calibri;">Delete User By ID</h5>
-		<br>
-		<form action="deleteUser" method="POST">
-		<fieldset>
-		<br>
-			<div>Id: <select name = "userId" required oninvalid="this.setCustomValidity('Please choose an ID')">
-								<option value="" disabled selected>Select your option</option>
-								<c:forEach items="${userList}" var="user" varStatus = "status">
-									<option  name="userId" value="${user.id}">${user.id}.${user.username}</option>
-								</c:forEach>
-							</select><!-- <input style="float:right"type="text" name="userId"></div><br /> --> 
-			<br></div><br /> 
-			<br>
-			<input class="updatebutton" type="submit" value="Delete" style="font-family: calibri;"/>
-			<br></br>
-			</fieldset>
-		</form>
-		<br />
-		<br></br>
+		<h5 class="codrops-top" style=" font-size: large; font-family: calibri;">Delete User By ID</h5> -->
+
+			<form action="deleteUser" method="POST">
+				<fieldset class="third" style="float: right;">
+					<legend>Delete user</legend>
+					<br>
+					<div>
+						Id: <select name="userId" required
+							oninvalid="this.setCustomValidity('Please choose an ID')">
+							<option value="" disabled selected>Select user</option>
+							<c:forEach items="${userList}" var="item" varStatus="status">
+							<c:if test="${user.username != item.username}">
+								<option name="userId" value="${item.id}">${item.id}.${item.username}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+						<!-- <input style="float:right"type="text" name="userId"></div><br /> -->
+						<br>
+					</div>
+					<br /> <br> <input class="updatebutton" type="submit"
+						value="Delete" style="font-family: calibri;" /> <br></br>
+				</fieldset>
+			</form>
+
+			<br><br></br>
+
+		</fieldset>
 	</div>
+
+	<br><br><br>
+
 </body>
 </html>

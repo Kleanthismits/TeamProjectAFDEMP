@@ -2,6 +2,7 @@
 
 html {
 	background-image: url("pictures/campfire.jpg");
+ 	/* background-size: cover; */
 }
 
 body {
@@ -10,7 +11,8 @@ body {
     max-width: 600px;
     margin: auto;
     /* background-image: url("pictures/fireflies.png"); */
-   	background-color: lavender
+   	background-color: lavender;
+   	height:100%;
 }
 
 /* Bordered form */

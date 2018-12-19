@@ -81,8 +81,8 @@ public class MessageController {
  
     }
     
-    @GetMapping(value = "/pdfReport", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> messagesReport(@ModelAttribute("user") User user) throws IOException {
+    @GetMapping(value = "/pdfAllReport", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> messagesAllReport(@ModelAttribute("user") User user) throws IOException {
 
     	 List<Message> messageList = messageRepository.getAllMessages();
          for(Message m : messageList) {
@@ -90,10 +90,27 @@ public class MessageController {
       	   m.setSenderName(userRepository.findCustomById(m.getSender_id()));
          }
         ByteArrayInputStream bis = GeneratedPdfReport.messagesReport(messageList);
-
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=messagesreport.pdf");
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
+    }
+    
+    @GetMapping(value = "/pdfYourReport", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> messagesYourReport(@ModelAttribute("user") User user) throws IOException {
 
+    	 List<Message> messageList = messageRepository.findReceivedandSentMessages(user.getId(), user.getId());
+         for(Message m : messageList) {
+        	 System.out.println(m.toString()+ "kkkkk");
+      	   m.setReceiverName(userRepository.findCustomById(m.getReceiver_id()));
+      	   m.setSenderName(userRepository.findCustomById(m.getSender_id()));
+         }
+        ByteArrayInputStream bis = GeneratedPdfReport.messagesReport(messageList);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=messagesreport.pdf");
         return ResponseEntity
                 .ok()
                 .headers(headers)
@@ -138,7 +155,7 @@ public class MessageController {
     	String receiver = userRepository.findCustomById(message2.getReceiver_id());
     	System.out.println(receiver + "receiver");
     	mv.addObject("receiver",receiver);
-    	mv.setViewName("viewMessage");
+    	mv.setViewName("sentMessage7");
     	mv.addObject("message", message2);
         return mv;
     }

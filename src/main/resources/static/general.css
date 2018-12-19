@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+body {
+    /* height:100%; */
+    font-family: calibri;
+    margin: auto;
+    /* max-width: 900px; */
+    /* background-image: url("pictures/fireflies.png"); */
+   	/* background-color: lavender */
+   	/* background-size: cover; */
+}
+
+fieldset{
+	/* max-width: 400px; */
+    margin: auto;
+    text-align:left;
+    border: solid #000000;
+    padding: 12px;
+	border-radius: 6px;
+	 /* color: darkgreen; */
+    /* font-size: 12px; */
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+#userlist{
+	/* max-width: 600px; */
+    margin: auto;
+    text-align:left;
+    border: solid #000000;
+    color: darkgreen;
+    font-size: 12px;
+    padding: 12px;  
+}
+
+#userlistTable{
+	font-family: calibri;
+	/* border: solid #000000; */
+}
+
+#userListTitle{
+	background-color: #4CAF50;
+    color: black;   
+}
+
+#userListColumns{
+	border: solid #000000;
+	font-size: large;
+	width: 200px; 
+}
+
+#userListId{
+	border: 2px solid #3b3b3b
+}
+
+#userListItems:nth-child(odd){
+	 background-color: #85a995;
+}
+
+#userListItems:hover{
+	 background-color: #ff7d7d;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+tr.list:hover {
+	background-color: #ff7d7d;	
+	}
+
+tr.header {
+	font-weight: bold;
+	color: darkgreen;
+}
+
+
+#confirmationDiv{
+	text-align:center;
+	color: #d50000;
+	text-decoration: underline;
+	/* margin:auto;
+	width: 300px; */
+	/* border: 2px solid black;
+	border-radius: 6px; */
+}
+
+#returnButton{
+  background-color: #804040;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  float: right;
+}
+
+input[type="text"]{
+    width:200px;
+    height:25px;
+    font-size:15px;
+    background-color: #ffffa6;
+	float: right;
+}
+
+input:hover {
+    filter: brightness(115%);
+}
+
+select{
+	width:200px;
+    height:25px;
+    font-size:13px;
+    background-color: #ffffa6;
+	float: right;
+}
+
+select:hover {
+    filter: brightness(110%);;
+}
+
+button:hover {
+    filter: brightness(115%);;
+}
+
+option{
+	width:200px;
+    height:25px;
+    font-size:15px;
+    background-color: #ffffa6;
+    float: right;
+}
+
+input.updatebutton{
+  background-color: #804040;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  float:right;
+}
+
+legend { 
+  font-size: 18px;
+  display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: none;
+}
+
+/* input{
+    background: lavender;  
+    font-size: 1px;
+    float: right;  
+} */
+

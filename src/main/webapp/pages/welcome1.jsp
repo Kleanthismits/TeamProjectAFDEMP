@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="c"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,32 +10,35 @@
 </head>
 <body>
 
-<form action="loggedIn" method="post">
-  <div class="imgcontainer">
-    <img src="pictures/howling_wolf.jpg" alt="login_icon" class="login_icon">
-  </div>
-  
-  <div>
-  <p class="welcome"> CryWolf </p> <p class="welcome" style="font-size:20px;"> Messenger </p>
-  </div>
+	<form action="loggedIn" method="post">
+		<div class="imgcontainer">
+			<img src="pictures/howling_wolf.jpg" alt="login_icon"
+				class="login_icon">
+		</div>
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>${userNotFound}
-    <input type="text" placeholder="Enter Username" name="username" required>
+		<div>
+			<p class="welcome">CryWolf</p>
+			<p class="welcome" style="font-size: 20px;">Messenger</p>
+		</div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
- <input type="submit" value = "Login" class = "submit">
+		<div class="container">
+			<label for="uname"><b>Username</b></label>${userNotFound} <input
+				type="text" placeholder="Enter Username" name="username" required>
 
-  </div>
-  </form>
+			<label for="psw"><b>Password</b></label> <input type="password"
+				placeholder="Enter Password" name="password" required> 
+				
+				<input type="submit" style="float:right;" value="Login" class="submit">
 
-  <div class="container" style="background-color:#f1f1f1">
- <form action="register" method="get">
-    <input type="submit" value = "Register" class = "reg">
-    </form >
-  </div>
- 
+		</div>
+	</form>
+
+	<div class="container" style="background-color: #f1f1f1">
+		<form action="register" method="get">
+			<input type="submit" value="Register" class="reg">
+		</form>
+	</div>
+
 
 
 </body>

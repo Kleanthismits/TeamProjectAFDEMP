@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/demo.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/showMessages.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/general.css">
 <meta charset="UTF-8">
-<title>Show Messages</title>
+<title>Sent Messages</title>
 </head>
 <body>
 
@@ -22,27 +22,29 @@
 
 	<div style="text-align: center">
 	<p><c:out value="${user.username}"/></p>
-		<table border="1" style="display: inline-block">
+	<fieldset id="userList">
+		<table border="1" style="margin:auto;">
 			<tr>
 				<td colspan="6" style="border: none; text-align: center;">
-					<h2 class="codrops-demos a">Sent Messages</h2>
+					<h2 id="userListTitle" class="codrops-demos a">Sent Messages</h2>
 				</td>
 			</tr>
-			<tr><th>Receiver</th>
-				<th>Date Sent</th>
-				<th>Date Updated</th>
-				<th>Subject</th>
+			<tr class="header">
+			<th id="userListColumns">Receiver</th>
+				<th id="userListColumns">Date Sent</th>
+				<th id="userListColumns">Date Updated</th>
+				<th id="userListColumns">Subject</th>
 			</tr>
 			<c:forEach items="${messageList}" var="item" varStatus = "status">
 			
-				<tr>
+				<tr id="userListItems" class="list">
 					<td>${item.receiverName}</td>
 					<td>${item.sent_at}</td>
 					<td>${item.updated_at}</td>
 					<td>${item.subject}</td>
 					<td>
 					<form  method = "get" action = "showMessage/${item.id}">
-					<button type="submit">View</button>
+					<button type="submit" id="viewButton">View</button>
 					</form>
 					</td>
 					
@@ -52,11 +54,13 @@
 
 
 		</table>
-	</div>
+	
 
 	<form method = "get" action ="/loggedIn">
 		<button type = "submit" id="returnButton"  style="margin:auto;">Go Back</button>
 		</form>
+		</fieldset>
+		</div>
 	<br />
 	
 

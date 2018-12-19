@@ -1,21 +1,25 @@
 @charset "UTF-8";
 
 html {
-	background-image: url("pictures/dayforest.jpeg");
+	background-image: url("pictures/autumn.jpg");
+	background-size: cover;
 }
 
 body {
-    /* background-image: url("background.gif"); */
     max-width: 1100px;
-    margin: auto;
-    /* background-image: url("pictures/fireflies.png"); */
+    /* margin: auto; */
+    /* font-family: calibri; */
    	/* background-color: lavender */
 }
 
-/* Center the avatar image inside this container */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
+fieldset{
+	max-width: 1000px;
+    /* margin: auto;
+    text-align:left;
+    border: solid #000000;
+    color: darkgreen;
+    font-size: 12px;
+    padding: 12px;   */
 }
 
 /* Avatar image */
@@ -24,46 +28,25 @@ img.login_icon {
   border-radius: 20%;
 }
 
-th, td {
-  padding: 10px;
-  text-align: center;
-}
-
-tr:hover {background-color: lightgreen;}
-
-tr.header {
-	font-weight: bold;
-	color: darkgreen;
-}
-
 h2.codrops-demos{
 	background-color: #4CAF50;
   color: black;
 }
 
-input{
-    background: lavender;
-    /* float: right;  */ 
-}
-
-fieldset{
-	max-width: 400px;
-    margin: auto;
-    text-align:left;
-    border: solid #000000;
-    /* color: darkgreen; */
-    /* font-size: 12px; */
-    padding: 12px;  
-	
-}
-
-input.updatebutton{
-  background-color: #804040;
-  color: white;
-  padding: 10px 20px;
+#viewButton{
+	background-color:#ff9c6c;
+	padding: 2px 12px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
 }
 
-/* tr:nth-child(even) {background-color: #f2f2f2;} */
+#userlist{
+	max-width: 600px;
+    /* margin: auto;
+    text-align:left;
+    border: solid #000000;
+    color: darkgreen;
+    font-size: 12px;
+    padding: 12px;   */
+}
+

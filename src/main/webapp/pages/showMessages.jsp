@@ -10,8 +10,9 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="demo.css">
 <link rel="stylesheet" href="showMessages.css">
+<link rel="stylesheet" href="general.css">
 <meta charset="UTF-8">
-<title>Show Messages</title>
+<title>Messages list</title>
 </head>
 <body>
 
@@ -20,22 +21,23 @@
   </div>
 
 	<div style="text-align: center">
+	<fieldset id="userList">
 		<table border="1" style="display: inline-block">
 			<tr>
 				<td colspan="10" style="border: none; text-align: center;">
-					<h2 class="codrops-demos a">Messages</h2>
+					<h2 id="userListTitle"  class="codrops-demos a">Received Messages</h2>
 				</td>
 			</tr>
-			<tr>
-				<th>Sender</th>
-				<th>Receiver</th>
-				<th>Date Sent</th>
-				<th>Date Updated</th>
-				<th>Subject</th>
-				<th>Text Content</th>
+			<tr class="header">
+				<th id="userListColumns">Sender</th>
+				<th id="userListColumns">Receiver</th>
+				<th id="userListColumns">Date Sent</th>
+				<th id="userListColumns">Date Updated</th>
+				<th id="userListColumns">Subject</th>
+				<th id="userListColumns">Text Content</th>
 			</tr>
 			<c:forEach items="${messageList}" var="item">
-				<tr>
+				<tr id="userListItems" class="list">
 					<td>${item.senderName}</td>
 					<td>${item.receiverName}</td>
 					<td>${item.sent_at}</td>
@@ -47,11 +49,13 @@
 
 
 		</table>
-	</div>
+
 
 	<form method = "get" action ="/loggedIn">
 		<button type = "submit" id="returnButton"  style="margin:auto;">Go Back</button>
 		</form>
+		</fieldset>
+			</div>
 	<br />
 	
 

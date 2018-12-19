@@ -5,19 +5,11 @@ html {
 }
 
 body {
-    /* background-image: url("background.gif"); */
-    height:100%
-    font-family: calibri;
-    max-width: 900px;
-    margin: auto;
-    /* background-image: url("pictures/fireflies.png"); */
+	max-width: 1100px;
+    /* height:100%; */
+    /* font-family: calibri; */
+    /* margin: auto; */
    	/* background-color: lavender */
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
 }
 
 /* Avatar image */
@@ -26,98 +18,32 @@ img.login_icon {
   border-radius: 20%;
 }
 
+fieldset{
+	max-width: 800px;
+    /* margin: auto;
+    text-align:left;
+    border: solid #000000;
+    color: darkgreen;
+    font-size: 12px;
+    padding: 12px;   */	
+}
+
+fieldset.second{
+	max-width: 900px;
+	border: none;
+}
+
+fieldset.third{
+	width: 400px;
+}
 
 #userlist{
 	max-width: 600px;
-    margin: auto;
-    text-align:left;
-    border: solid #000000;
+    /* margin: auto; */
+    /* text-align:left; */
+    /* border: solid #000000; */
     /* color: darkgreen; */
     /* font-size: 12px; */
-    padding: 12px;  
+    /* padding: 12px; */  
 }
 
-#userlistTable{
-	font-family: calibri;
-	/* border: solid #000000; */
-}
-
-#userListTitle{
-	background-color: #4CAF50;
-    color: black;   
-}
-
-#userListColumns{
-	border: solid #000000;
-	font-size: large;	 
-}
-
-#userListId{
-	border: 2px solid #3b3b3b
-}
-
-#userListItems:nth-child(odd){
-	 background-color: #85a995;
-}
-
-#userListItems:hover{
-	 background-color: #ff7d7d;
-}
-
-th, td {
-  padding: 10px;
-  text-align: center;
-  
-  
-}
-
-tr.list:hover {
-	background-color: #ff7d7d;
-	
-	}
-
-tr.header {
-	font-weight: bold;
-	color: darkgreen;
-}
-
-
-#returnButton{
-  background-color: #804040;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  float: right;
-}
-
-input{
-    background: lavender;
-    /* float: right;  */ 
-}
-
-fieldset{
-	max-width: 400px;
-    margin: auto;
-    text-align:left;
-    border: solid #000000;
-    /* color: darkgreen; */
-    /* font-size: 12px; */
-    padding: 12px;  
-	
-}
-
-
-
-input.updatebutton{
-  background-color: #804040;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  float:right;
-}
-
-/* tr:nth-child(even) {background-color: #f2f2f2;} */

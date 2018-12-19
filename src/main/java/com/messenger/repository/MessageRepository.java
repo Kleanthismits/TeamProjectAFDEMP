@@ -32,4 +32,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     //change
     @Query("from Message where receiver_id=?1 and sender_view=0")
     List<Message> findReceivedMessagesR1R2(Long receiver_id);
+    
+    @Query("from Message where receiver_id=?1 or sender_id=?2")
+    List<Message> findReceivedandSentMessages(Long receiver_id, Long sender_id);
 }
